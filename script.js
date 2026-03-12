@@ -180,9 +180,158 @@ const database = {
             <p style="text-align: center; color: var(--success);"><em>Fin du Chapitre 3. Tu es maintenant prêt à vaincre le boss final de l'Arène Python !</em></p>
         `,
         js: `
-            <h3>JavaScript : Le langage du Web</h3>
-            <p>C'est lui qui donne vie aux pages internet !</p>
-            <p>Une <strong>variable</strong> est une boîte dans laquelle on range une donnée. En JavaScript moderne, on utilise <code>let</code>.</p>
+            <h3>Chapitre 1 : L'Étincelle de Vie (Les Bases de JavaScript)</h3>
+            <p>Si le HTML est le squelette, le JavaScript (JS) est le muscle et le cerveau. C'est lui qui rend ta page interactive et vivante !</p>
+            <br>
+
+            <h4 style="color: var(--accent-color);">1. Murmurer à la machine (console.log)</h4>
+            <p>Pour tester ton code sans modifier la page visible par le joueur, on utilise le journal de bord du développeur : la console. L'instruction magique est <code>console.log()</code>.</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                console.log('Bonjour le monde !');
+            </div>
+
+            <h4 style="color: var(--accent-color);">2. L'art de la ponctuation</h4>
+            <p><strong>Règle très importante :</strong> En JavaScript, on termine chaque instruction (chaque ordre donné à la machine) par un point-virgule <code>;</code>. C'est comme le point à la fin d'une phrase en français.</p>
+
+            <h4 style="color: var(--accent-color);">3. Les coffres malléables (let)</h4>
+            <p>En JS moderne, on crée une variable avec le mot-clé <code>let</code>. Contrairement à Python, on doit annoncer "Je crée une boîte" avant de lui donner un nom.</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                let or = 100;<br>
+                or = 150; <span style="color: #6272a4;">// On modifie la valeur plus tard SANS remettre "let"</span>
+            </div>
+
+            <h4 style="color: var(--accent-color);">4. Les coffres scellés (const)</h4>
+            <p>Si une valeur ne doit <strong>jamais</strong> changer au cours du jeu (comme les règles de l'univers ou ton pseudo), on utilise <code>const</code> (pour constante). Si tu essaies de la modifier plus tard, le jeu plantera !</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                const PAYS = 'France';
+            </div>
+
+            <h4 style="color: var(--accent-color);">5. Les Types de données</h4>
+            <p>Comme en Python, il y a des textes (Strings, avec des guillemets), des nombres (Numbers, sans guillemets) et des booléens. <br>⚠️ <strong>Attention :</strong> en JS, les booléens s'écrivent tout en minuscules (<code>true</code> ou <code>false</code>).</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                let arme = 'Epée'; <span style="color: #6272a4;">// String</span><br>
+                let degats = 15; <span style="color: #6272a4;">// Number</span><br>
+                let vivant = true; <span style="color: #6272a4;">// Boolean</span>
+            </div>
+
+            <h4 style="color: var(--accent-color);">6. Mathématiques et Concaténation</h4>
+            <p>Le JS est aussi une calculatrice. On utilise <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>. Et comme en Python, le <code>+</code> sert aussi à coller deux morceaux de texte (concaténation).</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                let defense = 50 + 25;<br>
+                let cri = 'A l' + 'attaque !';
+            </div>
+
+            <hr>
+            <p style="text-align: center; color: var(--success);"><em>Fin du Chapitre 1 du grimoire JavaScript.</em></p>
+            <br><br>
+            <h3>Chapitre 2 : Les Carrefours du Temps (Conditions et Logique)</h3>
+            <p>En JavaScript, ton code peut prendre des décisions. Mais attention, la syntaxe change radicalement par rapport à Python ! Fini les deux-points, place aux parenthèses et aux accolades.</p>
+            <br>
+
+            <h4 style="color: var(--accent-color);">1. L'embranchement (if / else)</h4>
+            <p>Pour faire une condition, la règle d'or en JS est : la condition va entre <strong>parenthèses ()</strong>, et l'action à réaliser va entre <strong>accolades {}</strong>.</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                if (pv > 0) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log('Tu es vivant !');<br>
+                } else {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log('Game Over');<br>
+                }
+            </div>
+
+            <h4 style="color: var(--accent-color);">2. L'épreuve de l'égalité stricte (===)</h4>
+            <p>C'est <strong>le</strong> grand piège du JavaScript. Pour vérifier si deux choses sont égales, on utilise <strong>trois signes égal</strong> <code>===</code>. Cela vérifie la valeur ET le type. (Il existe un <code>==</code>, mais les développeurs pros l'évitent car il fait des erreurs d'interprétation bizarres !)</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                if (arme === 'arc') {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log('Flèche tirée !');<br>
+                }<br><br>
+                <span style="color: #6272a4;">// Pour dire "différent de", on utilise !==</span><br>
+                if (statut !== 'poison') {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log('Tout va bien');<br>
+                }
+            </div>
+
+            <h4 style="color: var(--accent-color);">3. Les choix multiples (else if)</h4>
+            <p>Si tu as plusieurs conditions à vérifier à la suite, contrairement à Python qui utilise "elif", JavaScript l'écrit en toutes lettres : <code>else if</code> (séparé par un espace).</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                if (niveau === 1) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log('Débutant');<br>
+                } else if (niveau === 10) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log('Expert');<br>
+                }
+            </div>
+
+            <h4 style="color: var(--accent-color);">4. L'alliance et le choix (&& et ||)</h4>
+            <p>En JS, les mots "and" et "or" n'existent pas pour les conditions. On utilise des symboles mathématiques :</p>
+            <ul>
+                <li style="margin-left: 20px;"><code>&&</code> (ET logique) : Les deux conditions doivent obligatoirement être vraies.</li>
+                <li style="margin-left: 20px;"><code>||</code> (OU logique) : Une seule condition suffit. (Ce sont deux barres verticales, souvent AltGr + 6 ou le trait sur le clavier Mac).</li>
+            </ul>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                if (cle === true && porte === 'ouverte') { ... }<br>
+                if (piece > 100 || gemme > 5) { ... }
+            </div>
+
+            <h4 style="color: var(--accent-color);">5. L'inversion (Le point d'exclamation !)</h4>
+            <p>Pour vérifier le contraire d'une condition (le fameux "not" de Python), JavaScript utilise un simple point d'exclamation <code>!</code> collé au nom de la variable.</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                if (!vivant) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log('Tu es un fantôme !');<br>
+                }
+            </div>
+
+            <hr>
+            <p style="text-align: center; color: var(--success);"><em>Fin du Chapitre 2. Tes bases logiques sont en place !</em></p>
+            <br><br>
+            <h3>Chapitre 3 : L'Arsenal et les Sortilèges (Tableaux, Boucles, Fonctions)</h3>
+            <p>Un vrai développeur JavaScript sait gérer des listes d'objets, automatiser ses tâches pour ne jamais se répéter, et créer ses propres commandes !</p>
+            <br>
+
+            <h4 style="color: var(--accent-color);">1. Le sac à dos (Les Tableaux / Arrays)</h4>
+            <p>En JS, une liste s'appelle un tableau (Array). On utilise les crochets <code>[]</code>. Et comme toujours en informatique, <strong>on commence à compter à partir de 0</strong> !</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                let sac = ['potion', 'carte'];<br>
+                console.log(sac[0]); <span style="color: #6272a4;">// Affichera 'potion'</span>
+            </div>
+
+            <h4 style="color: var(--accent-color);">2. Gérer le butin (push et length)</h4>
+            <p>Contrairement à Python qui utilise <code>.append()</code> et <code>len()</code>, JavaScript a son propre vocabulaire :</p>
+            <ul>
+                <li style="margin-left: 20px;"><code>.push()</code> : "Pousse" un nouvel élément à la fin du tableau.</li>
+                <li style="margin-left: 20px;"><code>.length</code> : Demande la longueur exacte du tableau (sans parenthèses !).</li>
+            </ul>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                sac.push('or');<br>
+                console.log(sac.length); <span style="color: #6272a4;">// Affichera 3</span>
+            </div>
+
+            <h4 style="color: var(--accent-color);">3. Répéter l'histoire (Boucle while)</h4>
+            <p>La boucle <code>while</code> (tant que) fonctionne avec la même logique qu'un <code>if</code> : la condition entre parenthèses, l'action entre accolades.</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                while (pv > 0) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log('Tu te bats !');<br>
+                }
+            </div>
+
+            <h4 style="color: var(--accent-color);">4. Compter les étapes (Boucle for)</h4>
+            <p>La boucle <code>for</code> classique en JavaScript est un peu impressionnante au début. Elle prend 3 instructions séparées par des points-virgules : le départ (<code>let i = 0</code>), la condition de fin (<code>i &lt; 5</code>), et l'incrémentation (<code>i++</code> qui veut dire "ajoute 1 à chaque tour").</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                for (let i = 0; i < 5; i++) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log('Coup numéro ' + i);<br>
+                }
+            </div>
+
+            <h4 style="color: var(--accent-color);">5. Créer ses propres commandes (Les Fonctions)</h4>
+            <p>C'est la base de la programmation. Le mot-clé <code>function</code> permet de créer un sortilège réutilisable. Tu l'invoques ensuite en tapant son nom suivi de parenthèses.</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                function frapper() {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log('Coup d\\'épée !');<br>
+                }<br><br>
+                <span style="color: #6272a4;">// Pour l'utiliser plus tard :</span><br>
+                frapper();
+            </div>
+
+            <hr>
+            <p style="text-align: center; color: var(--success);"><em>Fin du Chapitre 3. Ton grimoire JavaScript est maintenant complet !</em></p>
         `,
         html: `
             <h3>Chapitre 1 : Les Fondations du Web</h3>
@@ -557,29 +706,493 @@ const database = {
         ],
         // Tes anciens niveaux intégrés ici :
         js: [
+            // --- BLOC 1 : L'ÉTINCELLE DE VIE (1 à 10) ---
             {
                 type: "normal",
-                title: "Leçon 1 : La naissance d'une variable",
-                course: "Une variable est une boîte dans laquelle on range une donnée. En JavaScript moderne, on utilise 'let'.",
-                task: "Crée une variable nommée 'score' et donne-lui la valeur 10.",
-                expected: "letscore=10;", 
-                xpReward: 20
+                title: "Le premier murmure",
+                course: "En JavaScript, on parle à la console du navigateur avec console.log(). N'oublie pas le point-virgule à la fin !",
+                task: "Affiche le texte 'Hello World' dans la console.",
+                expected: "console.log('HelloWorld');",
+                xpReward: 10
             },
             {
                 type: "normal",
-                title: "Leçon 2 : Modifier la réalité",
-                course: "Tu peux changer la valeur d'une variable déclarée avec 'let' en l'appelant par son nom.",
-                task: "Modifie la variable 'score' pour qu'elle soit égale à 50.",
+                title: "La naissance d'une variable",
+                course: "Pour créer une nouvelle boîte de stockage, on utilise obligatoirement le mot-clé 'let' avant son nom.",
+                task: "Crée une variable nommée 'score' et donne-lui la valeur 10. (N'oublie pas le point-virgule !)",
+                expected: "letscore=10;",
+                xpReward: 15
+            },
+            {
+                type: "normal",
+                title: "Modifier la réalité",
+                course: "Une fois la variable créée avec 'let', tu peux modifier sa valeur sans réécrire 'let'.",
+                task: "La variable 'score' existe déjà. Modifie-la pour qu'elle soit égale à 50.",
                 expected: "score=50;",
-                xpReward: 30
+                xpReward: 15
+            },
+            {
+                type: "normal",
+                title: "Le sceau inbrisable",
+                course: "Si une donnée ne doit jamais changer, on la crée avec 'const'. Toute tentative de modification fera planter le jeu.",
+                task: "Crée une constante nommée 'PAYS' ayant pour valeur le texte 'France'.",
+                expected: "constPAYS='France';",
+                xpReward: 20
             },
             {
                 type: "boss",
                 title: "👹 BOSS : Le Gardien des Constantes",
-                course: "Les constantes ('const') ne peuvent pas être modifiées ! Le boss essaie de corrompre tes données.",
-                task: "Crée une constante nommée 'PAYS' ayant pour valeur 'France' (avec les guillemets simples).",
-                expected: "constPAYS='France';",
-                xpReward: 100
+                course: "Le boss essaie de corrompre tes points de vie maximaux. Protège-les avec un sceau !",
+                task: "Crée une constante nommée 'MAX_PV' et donne-lui la valeur numérique 100.",
+                expected: "constMAX_PV=100;",
+                xpReward: 50
+            },
+            {
+                type: "normal",
+                title: "L'art de l'arithmétique",
+                course: "JavaScript sait calculer. Utilise les symboles +, -, * et /.",
+                task: "Crée une variable (avec let) nommée 'degats' qui contient le résultat de 10 * 5.",
+                expected: "letdegats=10*5;",
+                xpReward: 20
+            },
+            {
+                type: "normal",
+                title: "Le forgeron des mots",
+                course: "Comme en Python, tu peux coller des textes avec le signe + (la concaténation).",
+                task: "Crée une variable 'titre' qui additionne les textes 'Super ' et 'Héros'.",
+                expected: "lettitre='Super'+'Héros';",
+                xpReward: 20
+            },
+            {
+                type: "normal",
+                title: "Vrai ou Faux ?",
+                course: "Les booléens s'écrivent tout en minuscules en JavaScript (true ou false).",
+                task: "Crée une variable 'vivant' et donne-lui la valeur true.",
+                expected: "letvivant=true;",
+                xpReward: 25
+            },
+            {
+                type: "normal",
+                title: "Le piège du texte",
+                course: "Le nombre 404 et le texte '404' sont différents. N'oublie pas les guillemets pour le texte !",
+                task: "Crée une variable 'code' contenant le TEXTE '404'.",
+                expected: "letcode='404';",
+                xpReward: 25
+            },
+            {
+                type: "boss",
+                title: "👹 BOSS : L'Alchimiste",
+                course: "L'alchimiste te demande de fusionner deux éléments déjà existants !",
+                task: "Crée une variable 'total' qui additionne la variable 'prix' et la variable 'taxe' (sans guillemets car ce sont des variables).",
+                expected: "lettotal=prix+taxe;",
+                xpReward: 75
+            },
+            // --- BLOC 2 : LES CARREFOURS DU TEMPS (11 à 20) ---
+            {
+                type: "normal",
+                title: "L'embranchement (if)",
+                course: "La condition se met entre parenthèses (), et l'action entre accolades {}. Pour ce niveau, laisse les accolades vides.",
+                task: "Écris une condition qui vérifie si 'pv' est strictement supérieur à 0.",
+                expected: "if(pv>0){}", 
+                xpReward: 20
+            },
+            {
+                type: "normal",
+                title: "L'épreuve de l'égalité stricte",
+                course: "En JS, on utilise TROIS signes égal (===) pour vérifier si deux choses sont exactement identiques.",
+                task: "Vérifie si la variable 'arme' est égale à 'arc' (avec des guillemets simples). Laisse les accolades vides.",
+                expected: "if(arme==='arc'){}", 
+                xpReward: 25
+            },
+            {
+                type: "normal",
+                title: "L'esquive ou la parade (!==)",
+                course: "Pour dire 'différent de', on utilise un point d'exclamation suivi de deux signes égal (!==).",
+                task: "Vérifie si le 'statut' est différent de 'poison'.",
+                expected: "if(statut!=='poison'){}", 
+                xpReward: 25
+            },
+            {
+                type: "normal",
+                title: "Le plan B (else)",
+                course: "Si la condition 'if' est fausse, le 'else' prend le relais. Il n'a pas besoin de parenthèses, juste d'accolades !",
+                task: "Écris simplement l'instruction 'else' avec ses accolades vides.",
+                expected: "else{}", 
+                xpReward: 15
+            },
+            {
+                type: "boss",
+                title: "👹 BOSS : Le Gardien des Portes",
+                course: "Le boss exige une condition de niveau. Tu dois avoir un niveau supérieur ou égal (>=) à 10.",
+                task: "Écris la condition if vérifiant si 'niveau' est supérieur ou égal à 10.",
+                expected: "if(niveau>=10){}", 
+                xpReward: 60
+            },
+            {
+                type: "normal",
+                title: "Les chemins multiples",
+                course: "Pour tester une autre condition si la première échoue, on utilise 'else if' (en deux mots, contrairement à Python).",
+                task: "Écris une condition 'else if' vérifiant si la variable 'choix' est égale à 2.",
+                expected: "elseif(choix===2){}", 
+                xpReward: 30
+            },
+            {
+                type: "normal",
+                title: "L'alliance absolue (&&)",
+                course: "Pour que deux conditions soient obligatoirement vraies en même temps, on utilise && (ET).",
+                task: "Vérifie si 'cle' est égal à true && 'porte' est égale à 'ouverte'.",
+                expected: "if(cle===true&&porte==='ouverte'){}", 
+                xpReward: 35
+            },
+            {
+                type: "normal",
+                title: "L'un ou l'autre (||)",
+                course: "Pour qu'une seule des deux conditions suffise, on utilise || (OU). Ce sont deux barres verticales.",
+                task: "Vérifie si 'piece' est supérieur à 100 || 'gemme' est supérieur à 5.",
+                expected: "if(piece>100||gemme>5){}", 
+                xpReward: 35
+            },
+            {
+                type: "normal",
+                title: "La vérité absolue",
+                course: "Comme en Python, si une variable est déjà un booléen (true/false), tu peux la tester directement sans faire '=== true'.",
+                task: "Écris un 'if' qui vérifie directement la variable 'vivant' (sans utiliser ===).",
+                expected: "if(vivant){}", 
+                xpReward: 30
+            },
+            {
+                type: "boss",
+                title: "👹 BOSS : L'Énigme du Sphinx",
+                course: "Le Sphinx teste ta logique inversée. En JS, le mot 'not' n'existe pas, on utilise un point d'exclamation (!) collé à la variable.",
+                task: "Vérifie si 'vivant' est FAUX en utilisant le point d'exclamation (!).",
+                expected: "if(!vivant){}", 
+                xpReward: 80
+            },
+            // --- BLOC 3 : L'ARSENAL ET LES SORTILÈGES (21 à 30) ---
+            {
+                type: "normal",
+                title: "Le sac à dos (Tableau)",
+                course: "En JS, une liste s'appelle un Array (Tableau). On utilise les crochets [].",
+                task: "Crée une variable 'sac' (avec let) contenant 'potion' et 'carte' (dans cet ordre). N'oublie pas le point-virgule !",
+                expected: "letsac=['potion','carte'];",
+                xpReward: 30
+            },
+            {
+                type: "normal",
+                title: "Fouiller le sac (Index)",
+                course: "Comme en Python, on commence à compter à partir de 0. Le premier objet est à la position [0].",
+                task: "Affiche le premier objet de la liste 'sac' dans un console.log().",
+                expected: "console.log(sac[0]);",
+                xpReward: 30
+            },
+            {
+                type: "normal",
+                title: "Le butin (.push)",
+                course: "Pour ajouter un élément à la fin d'un tableau, on utilise la méthode .push() collée au nom du tableau.",
+                task: "Ajoute l'objet 'or' à ta liste 'sac'.",
+                expected: "sac.push('or');",
+                xpReward: 35
+            },
+            {
+                type: "normal",
+                title: "L'inventaire plein (.length)",
+                course: "Pour connaître la taille d'un tableau, on utilise .length (sans parenthèses car c'est une propriété, pas une action !).",
+                task: "Affiche la taille de la liste 'sac' dans un console.log().",
+                expected: "console.log(sac.length);",
+                xpReward: 35
+            },
+            {
+                type: "boss",
+                title: "👹 BOSS : Le Voleur furtif (.pop)",
+                course: "Un voleur t'attaque et te prend ton dernier objet ! La méthode .pop() retire le dernier élément d'un tableau.",
+                task: "Utilise .pop() (avec ses parenthèses vides) sur ton 'sac' pour retirer le dernier objet.",
+                expected: "sac.pop();",
+                xpReward: 80
+            },
+            {
+                type: "normal",
+                title: "La boucle infinie (while)",
+                course: "La boucle 'while' répète du code tant que sa condition est vraie. La syntaxe est identique au 'if'.",
+                task: "Crée une boucle qui tourne TANT QUE 'pv' est supérieur à 0 (laisse les accolades vides).",
+                expected: "while(pv>0){}",
+                xpReward: 40
+            },
+            {
+                type: "normal",
+                title: "Compter les moutons (for)",
+                course: "La boucle 'for' prend 3 instructions séparées par des ; (départ ; limite ; action de fin de tour).",
+                task: "Crée une boucle for classique : let i = 0; i < 5; i++ (laisse les accolades vides).",
+                expected: "for(leti=0;i<5;i++){}",
+                xpReward: 45
+            },
+            {
+                type: "normal",
+                title: "Parcourir l'inventaire",
+                course: "Tu peux utiliser .length comme limite de ta boucle for pour regarder chaque objet d'un sac !",
+                task: "Écris la même boucle for, mais la limite est i < sac.length (accolades vides).",
+                expected: "for(leti=0;i<sac.length;i++){}",
+                xpReward: 45
+            },
+            {
+                type: "normal",
+                title: "L'esquive d'urgence (break)",
+                course: "Le mot-clé 'break' permet de casser une boucle et d'en sortir immédiatement.",
+                task: "Écris simplement l'instruction pour casser la boucle, suivie de son point-virgule.",
+                expected: "break;",
+                xpReward: 30
+            },
+            {
+                type: "boss",
+                title: "👹 BOSS FINAL : L'Architecte des Sorts",
+                course: "Le boss final exige que tu crées ta propre fonction ! On utilise le mot-clé 'function'.",
+                task: "Crée une fonction nommée 'frapper' avec des parenthèses et des accolades vides.",
+                expected: "functionfrapper(){}",
+                xpReward: 150
+            }
+        ],
+        html: [
+            // --- BLOC 1 : LES FONDATIONS (1 à 10) ---
+            {
+                type: "normal",
+                title: "La première pierre",
+                course: "Tout commence par un paragraphe. La balise <p> permet d'écrire du texte classique.",
+                task: "Crée un paragraphe encadrant exactement le mot 'Bonjour'.",
+                expected: "<p>Bonjour</p>",
+                xpReward: 10
+            },
+            {
+                type: "normal",
+                title: "Crier haut et fort",
+                course: "Le titre principal d'une page s'écrit avec la balise <h1>.",
+                task: "Crée un titre de niveau 1 contenant le mot 'Taverne'.",
+                expected: "<h1>Taverne</h1>",
+                xpReward: 15
+            },
+            {
+                type: "normal",
+                title: "Saut dans le vide",
+                course: "Parfois on veut juste passer à la ligne sans créer de nouveau paragraphe. La balise orpheline <br> sert exactement à ça.",
+                task: "Écris simplement la balise de retour à la ligne.",
+                expected: "<br>",
+                xpReward: 10
+            },
+            {
+                type: "normal",
+                title: "Mettre l'accent",
+                course: "Pour mettre un mot en gras et montrer son importance au navigateur, on utilise la balise <strong>.",
+                task: "Mets le mot 'Danger' en gras.",
+                expected: "<strong>Danger</strong>",
+                xpReward: 15
+            },
+            {
+                type: "boss",
+                title: "👹 BOSS : Le Gardien du Portail",
+                course: "Le boss teste tes fondations ! Tu dois combiner une balise et un attribut 'href'.",
+                task: "Crée un lien <a> qui pointe vers 'donjon.html' et qui a pour texte 'Entrer'. (Utilise des guillemets simples ou doubles).",
+                expected: "<a href='donjon.html'>Entrer</a>",
+                xpReward: 50
+            },
+            {
+                type: "normal",
+                title: "L'art de l'inventaire (1/2)",
+                course: "Pour faire une liste à puces (non numérotée), il faut d'abord créer le conteneur principal <ul> (Unordered List).",
+                task: "Ouvre et ferme simplement une balise <ul> vide.",
+                expected: "<ul></ul>",
+                xpReward: 20
+            },
+            {
+                type: "normal",
+                title: "L'art de l'inventaire (2/2)",
+                course: "À l'intérieur de <ul>, chaque élément doit être encadré par la balise <li> (List Item).",
+                task: "Crée un élément de liste <li> contenant le mot 'Potion'.",
+                expected: "<li>Potion</li>",
+                xpReward: 20
+            },
+            {
+                type: "normal",
+                title: "Le grand coffre",
+                course: "La balise <div> est un conteneur invisible (un bloc) très utilisé pour regrouper d'autres éléments ensemble.",
+                task: "Crée une balise <div> vide (ouverte et fermée).",
+                expected: "<div></div>",
+                xpReward: 20
+            },
+            {
+                type: "normal",
+                title: "La petite bourse",
+                course: "Contrairement au <div>, le <span> est un conteneur qui s'insère à l'intérieur d'une phrase sans forcer le passage à la ligne.",
+                task: "Encadre le mot 'Or' avec une balise <span>.",
+                expected: "<span>Or</span>",
+                xpReward: 25
+            },
+            {
+                type: "boss",
+                title: "👹 BOSS : L'Illusionniste",
+                course: "L'illusionniste te demande de faire apparaître une image. N'oublie pas que c'est une balise orpheline (pas de fermeture) et qu'elle nécessite l'attribut 'src' !",
+                task: "Crée une image <img> avec pour source 'boss.png'.",
+                expected: "<img src='boss.png'>",
+                xpReward: 70
+            },
+            // --- BLOC 2 : FORMULAIRES ET STRUCTURE (11 à 20) ---
+            {
+                type: "normal",
+                title: "L'inventaire ordonné",
+                course: "Contrairement au <ul> qui fait des puces, la balise <ol> (Ordered List) crée une liste numérotée automatiquement (1, 2, 3...).",
+                task: "Crée une liste ordonnée contenant un seul élément <li> avec le mot 'Premier'.",
+                expected: "<ol><li>Premier</li></ol>",
+                xpReward: 25
+            },
+            {
+                type: "normal",
+                title: "La demande au joueur",
+                course: "Pour que l'utilisateur puisse taper du texte, on utilise la balise orpheline <input>. Par défaut, son type est 'text'.",
+                task: "Crée un <input> avec l'attribut type égal à 'text' (n'oublie pas les guillemets).",
+                expected: "<inputtype='text'>",
+                xpReward: 30
+            },
+            {
+                type: "normal",
+                title: "Le mot de passe secret",
+                course: "Si tu changes l'attribut type en 'password', le navigateur cachera les lettres avec des petits points noirs !",
+                task: "Crée un <input> avec l'attribut type égal à 'password'.",
+                expected: "<inputtype='password'>",
+                xpReward: 30
+            },
+            {
+                type: "normal",
+                title: "Le texte fantôme",
+                course: "L'attribut 'placeholder' permet d'afficher un texte grisé dans un input pour indiquer au joueur ce qu'il doit taper.",
+                task: "Crée un <input> avec l'attribut placeholder égal à 'Pseudo'.",
+                expected: "<inputplaceholder='Pseudo'>",
+                xpReward: 35
+            },
+            {
+                type: "boss",
+                title: "👹 BOSS : Le Collecteur d'Âmes",
+                course: "Pour que le navigateur comprenne que plusieurs <input> vont ensemble, on les enferme dans une grande balise conteneur : <form>.",
+                task: "Crée une balise <form> et place un <input> (sans attribut) à l'intérieur.",
+                expected: "<form><input></form>",
+                xpReward: 70
+            },
+            {
+                type: "normal",
+                title: "Le déclencheur",
+                course: "Pour valider un formulaire ou lancer une action, on utilise un bouton cliquable : <button>.",
+                task: "Crée un <button> contenant le texte 'Jouer'.",
+                expected: "<button>Jouer</button>",
+                xpReward: 25
+            },
+            {
+                type: "normal",
+                title: "L'en-tête du parchemin",
+                course: "Plutôt que d'utiliser des <div> partout, on utilise des balises sémantiques. <header> définit le haut de ta page (ou d'une section).",
+                task: "Crée une balise <header> vide (ouverte et fermée).",
+                expected: "<header></header>",
+                xpReward: 20
+            },
+            {
+                type: "normal",
+                title: "Le cœur de l'action",
+                course: "La balise <main> est unique sur la page. Elle encadre le contenu principal de ton site, hors menus et pieds de page.",
+                task: "Crée une balise <main> vide.",
+                expected: "<main></main>",
+                xpReward: 20
+            },
+            {
+                type: "normal",
+                title: "La signature",
+                course: "Tout en bas de ta page, on utilise la balise <footer> pour le pied de page (mentions légales, liens annexes, etc.).",
+                task: "Crée une balise <footer> vide.",
+                expected: "<footer></footer>",
+                xpReward: 20
+            },
+            {
+                type: "boss",
+                title: "👹 BOSS : L'Architecte Sémantique",
+                course: "Le boss te demande d'assembler la structure de base. Le titre d'une page va très souvent dans l'en-tête !",
+                task: "Crée un <header> contenant un <h1> avec le texte 'Jeu'.",
+                expected: "<header><h1>Jeu</h1></header>",
+                xpReward: 80
+            },
+            // --- BLOC 3 : TABLEAUX, MÉDIAS ET IDENTIFIANTS (21 à 30) ---
+            {
+                type: "normal",
+                title: "Le tableau d'affichage",
+                course: "Pour afficher des données structurées, on utilise un tableau avec la balise <table>.",
+                task: "Crée un tableau <table> vide.",
+                expected: "<table></table>",
+                xpReward: 30
+            },
+            {
+                type: "normal",
+                title: "Les rangées du tableau",
+                course: "Un tableau est découpé en lignes (rows). On utilise la balise <tr> (Table Row) pour créer une nouvelle ligne.",
+                task: "Crée une ligne de tableau <tr> vide.",
+                expected: "<tr></tr>",
+                xpReward: 30
+            },
+            {
+                type: "normal",
+                title: "L'en-tête de la colonne",
+                course: "Dans une ligne, pour définir le titre d'une colonne, on utilise <th> (Table Header). Le texte sera souvent en gras par défaut.",
+                task: "Crée un en-tête <th> contenant le texte 'Arme'.",
+                expected: "<th>Arme</th>",
+                xpReward: 35
+            },
+            {
+                type: "normal",
+                title: "La cellule de données",
+                course: "Pour remplir les cases normales du tableau, on utilise <td> (Table Data).",
+                task: "Crée une cellule <td> contenant le texte 'Or'.",
+                expected: "<td>Or</td>",
+                xpReward: 35
+            },
+            {
+                type: "boss",
+                title: "👹 BOSS : Le Marchand",
+                course: "Le marchand veut que tu construises une vitrine complète ! Il faut imbriquer les balises.",
+                task: "Crée un <table> contenant un <tr>, qui lui-même contient un <td> avec le mot 'Or'.",
+                expected: "<table><tr><td>Or</td></tr></table>",
+                xpReward: 80
+            },
+            {
+                type: "normal",
+                title: "Le portail vers un autre monde",
+                course: "La balise <iframe> permet d'afficher une AUTRE page web à l'intérieur de ta page ! Elle utilise l'attribut 'src'.",
+                task: "Crée une <iframe> avec l'attribut src égal à 'carte.html'. (N'oublie pas de fermer la balise !)",
+                expected: "<iframesrc='carte.html'></iframe>",
+                xpReward: 40
+            },
+            {
+                type: "normal",
+                title: "La boîte à musique",
+                course: "HTML peut jouer du son nativement avec la balise <audio>. L'attribut 'controls' (sans valeur) permet d'afficher les boutons play/pause.",
+                task: "Crée une balise <audio> avec un attribut src égal à 'cri.mp3' et l'attribut 'controls'.",
+                expected: "<audiosrc='cri.mp3'controls></audio>",
+                xpReward: 45
+            },
+            {
+                type: "normal",
+                title: "L'étiquette de guilde (Class)",
+                course: "L'attribut 'class' permet de donner un nom de groupe à une balise. Ce sera indispensable pour le CSS ! Plusieurs éléments peuvent avoir la même classe.",
+                task: "Crée un <p> avec l'attribut class égal à 'quete' et contenant le texte 'Rat'.",
+                expected: "<pclass='quete'>Rat</p>",
+                xpReward: 40
+            },
+            {
+                type: "normal",
+                title: "La marque unique (ID)",
+                course: "L'attribut 'id' donne un identifiant UNIQUE à une balise. Il ne peut y avoir qu'un seul élément avec cet ID sur toute la page.",
+                task: "Crée un <div> avec l'attribut id égal à 'boss' et contenant le texte 'Dragon'.",
+                expected: "<divid='boss'>Dragon</div>",
+                xpReward: 40
+            },
+            {
+                type: "boss",
+                title: "👹 BOSS FINAL : Le Maître du Donjon",
+                course: "Le boss final exige une combinaison parfaite : un conteneur unique avec une page imbriquée.",
+                task: "Crée un <div> avec la class 'donjon'. À l'intérieur, place une <iframe> dont la src est 'jeu.html'.",
+                expected: "<divclass='donjon'><iframesrc='jeu.html'></iframe></div>",
+                xpReward: 150
             }
         ]
     }
