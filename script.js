@@ -250,6 +250,7 @@ const app = {
             console.error("Erreur GitHub :", error);
         }
     }
+};
 
 // --- 5. DÉMARRAGE DU JEU ---
 window.onload = () => app.init();
