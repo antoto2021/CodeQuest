@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeQuest - Apprends en jouant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>🗡️ CodeQuest</h1>
+        </div>
+        <div class="controls">
+            <button id="refresh-btn" title="Rafraîchir l'application">🔄</button>
+            <button id="info-btn" title="Informations de version">ℹ️</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="status-bar">
+            <span id="level-display" class="badge">Niveau 1</span>
+            <span id="xp-display" class="badge xp">0 XP</span>
+        </div>
+
+        <section id="game-board" class="card">
+            <div id="course-area">
+                <h2 id="lesson-title">Chargement...</h2>
+                <p id="lesson-text">Prépare ton épée et ton clavier.</p>
+            </div>
+            
+            <hr>
+
+            <div id="practice-area">
+                <h3>⚔️ Défi</h3>
+                <p id="task-text">Mission en cours...</p>
+                <textarea id="code-input" placeholder="Écris ton code JavaScript ici..."></textarea>
+                <button id="submit-btn">Lancer le sort (Valider) 🚀</button>
+                <p id="feedback-message"></p>
+            </div>
+        </section>
+    </main>
+
+    <div id="info-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal">&times;</span>
+            <h2>Version de l'Appli</h2>
+            <div class="version-info">
+                <p><strong>Hash local de l'appli :</strong> <span id="app-hash"></span></p>
+                <p><strong>Dernier commit GitHub :</strong> <span id="github-hash">Recherche...</span></p>
+            </div>
+            <p class="small-text">Note : La récupération du dernier commit GitHub nécessite une connexion internet.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
