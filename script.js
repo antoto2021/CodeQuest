@@ -40,7 +40,7 @@ const database = {
                 xpReward: 20
             }
         ],
-        // J'AI PLACÉ TES ANCIENS NIVEAUX ICI, DANS LA SECTION JAVASCRIPT :
+        // Tes anciens niveaux intégrés ici :
         js: [
             {
                 type: "normal",
@@ -249,7 +249,8 @@ const app = {
             ghText.textContent = "Introuvable (Dépôt vide ou privé ?)";
             console.error("Erreur GitHub :", error);
         }
-    };
+    }
+};
 
 // --- 5. DÉMARRAGE DU JEU ---
 window.onload = () => app.init();
