@@ -1,7 +1,7 @@
 // --- CONFIGURATION ---
 const APP_HASH = "a1b2c3d"; // Change ceci à chaque mise à jour manuelle de ton code
-const GITHUB_USER = "VOTRE_PSEUDO"; // <-- À modifier
-const GITHUB_REPO = "VOTRE_REPO";   // <-- À modifier
+const GITHUB_USER = "antoto2021"; // <-- À modifier
+const GITHUB_REPO = "CodeQuest";   // <-- À modifier
 
 // --- BASE DE DONNÉES DES NIVEAUX ---
 const levelsData = [
