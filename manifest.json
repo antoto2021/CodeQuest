@@ -1,0 +1,21 @@
+{
+  "name": "CodeQuest",
+  "short_name": "CodeQuest",
+  "description": "Apprends à coder de façon ludique en affrontant des boss !",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1e1e2f",
+  "theme_color": "#2a2a40",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
