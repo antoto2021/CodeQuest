@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeQuest - Apprends en jouant</title>
+    <title>CodeQuest - Hub d'apprentissage</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <div class="header-left">
-            <h1>🗡️ CodeQuest</h1>
+            <h1 id="home-btn" style="cursor: pointer;" title="Retour à l'accueil">🗡️ CodeQuest</h1>
         </div>
         <div class="controls">
             <button id="refresh-btn" title="Rafraîchir l'application">🔄</button>
@@ -18,38 +18,85 @@
     </header>
 
     <main>
-        <div class="status-bar">
-            <span id="level-display" class="badge">Niveau 1</span>
-            <span id="xp-display" class="badge xp">0 XP</span>
-        </div>
-
-        <section id="game-board" class="card">
-            <div id="course-area">
-                <h2 id="lesson-title">Chargement...</h2>
-                <p id="lesson-text">Prépare ton épée et ton clavier.</p>
+        <section id="view-home" class="view active">
+            <div class="main-menu">
+                <h2>Bienvenue, Novice.</h2>
+                <p>Choisis ta voie pour devenir un Maître du Code.</p>
+                <button class="menu-btn" onclick="app.navigate('view-courses')">📚 Grimoires (Cours)</button>
+                <button class="menu-btn" onclick="app.navigate('view-training')">⚔️ Arène (Entraînement)</button>
             </div>
-            
-            <hr>
+        </section>
 
-            <div id="practice-area">
-                <h3>⚔️ Défi</h3>
-                <p id="task-text">Mission en cours...</p>
-                <textarea id="code-input" placeholder="Écris ton code JavaScript ici..."></textarea>
-                <button id="submit-btn">Lancer le sort (Valider) 🚀</button>
-                <p id="feedback-message"></p>
+        <section id="view-courses" class="view hidden">
+            <button class="back-btn" onclick="app.navigate('view-home')">⬅ Retour</button>
+            <div class="card intro-card">
+                <h2>L'Art du Code</h2>
+                <p><strong>Le code</strong>, c'est simplement donner des instructions à une machine très obéissante mais pas très maligne. Dans les années 40, on programmait en déplaçant des câbles physiques ! Aujourd'hui, nous utilisons des "langages" compréhensibles par l'humain que l'ordinateur traduit en 0 et en 1.</p>
+                <p>Choisis ton langage pour commencer l'apprentissage :</p>
+            </div>
+            <div class="grid-buttons" id="course-list">
+                </div>
+        </section>
+
+        <section id="view-read-course" class="view hidden">
+            <button class="back-btn" onclick="app.navigate('view-courses')">⬅ Retour aux Grimoires</button>
+            <div class="card">
+                <h2 id="read-course-title">Titre du cours</h2>
+                <div id="read-course-content" class="course-content">
+                    </div>
+            </div>
+        </section>
+
+        <section id="view-training" class="view hidden">
+            <button class="back-btn" onclick="app.navigate('view-home')">⬅ Retour</button>
+            
+            <div class="dashboard card">
+                <h3>📊 Tableau de Bord</h3>
+                <div class="stats">
+                    <p>Total XP: <span id="dash-xp" class="badge xp">0 XP</span></p>
+                    <p>Badges: <span id="dash-badges">Aucun 😢</span></p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Choisis ton arène</h2>
+                <div class="grid-buttons" id="training-list">
+                    </div>
+            </div>
+        </section>
+
+        <section id="view-game" class="view hidden">
+            <button class="back-btn" onclick="app.navigate('view-training')">⬅ Fuir l'arène</button>
+            <div class="status-bar">
+                <span id="level-display" class="badge">Niveau 1</span>
+                <span id="xp-display" class="badge xp">0 XP</span>
+            </div>
+
+            <div class="card">
+                <div id="game-course-area">
+                    <h2 id="lesson-title">Chargement...</h2>
+                    <p id="lesson-text">...</p>
+                </div>
+                <hr>
+                <div id="practice-area">
+                    <h3>⚔️ Défi</h3>
+                    <p id="task-text">...</p>
+                    <textarea id="code-input" placeholder="Écris ton code ici..."></textarea>
+                    <button id="submit-btn" onclick="app.checkCode()">Lancer le sort 🚀</button>
+                    <p id="feedback-message"></p>
+                </div>
             </div>
         </section>
     </main>
 
     <div id="info-modal" class="modal hidden">
         <div class="modal-content">
-            <span id="close-modal">&times;</span>
+            <span id="close-modal" onclick="document.getElementById('info-modal').classList.add('hidden')">&times;</span>
             <h2>Version de l'Appli</h2>
             <div class="version-info">
-                <p><strong>Hash local de l'appli :</strong> <span id="app-hash"></span></p>
+                <p><strong>Hash local :</strong> <span id="app-hash"></span></p>
                 <p><strong>Dernier commit GitHub :</strong> <span id="github-hash">Recherche...</span></p>
             </div>
-            <p class="small-text">Note : La récupération du dernier commit GitHub nécessite une connexion internet.</p>
         </div>
     </div>
 
