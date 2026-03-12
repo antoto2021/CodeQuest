@@ -30,13 +30,86 @@ const database = {
     // Les niveaux d'entraînement (L'Arène)
     training: {
         python: [
+            // --- BLOC 1 : LES BASES ABSOLUES (1 à 10) ---
             {
                 type: "normal",
                 title: "L'éveil du serpent",
-                course: "La fonction print() permet d'afficher des données à l'écran.",
-                task: "Affiche le texte exact 'Hello World'.",
+                course: "En Python, l'instruction print() permet de parler au monde entier. Le texte doit toujours être encadré de guillemets simples ou doubles.",
+                task: "Affiche le texte 'Hello World'.",
                 expected: "print('HelloWorld')", 
+                xpReward: 10
+            },
+            {
+                type: "normal",
+                title: "Les boîtes magiques",
+                course: "Une variable est une boîte avec un nom. Contrairement à JavaScript, on n'a pas besoin de 'let'. On écrit juste le nom = la valeur.",
+                task: "Crée une variable nommée 'or' contenant le nombre 100.",
+                expected: "or=100", 
+                xpReward: 15
+            },
+            {
+                type: "normal",
+                title: "Le forgeron des mots",
+                course: "Les textes s'appellent des 'strings' (chaînes de caractères). Tu peux stocker un texte dans une variable.",
+                task: "Crée une variable 'arme' contenant le texte 'Epée'.",
+                expected: "arme='Epée'", 
+                xpReward: 15
+            },
+            {
+                type: "normal",
+                title: "L'art de l'arithmétique",
+                course: "Python est une excellente calculatrice. Tu peux utiliser les symboles +, -, * et /.",
+                task: "Crée une variable 'degats' qui est le résultat de 10 * 5.",
+                expected: "degats=10*5", 
                 xpReward: 20
+            },
+            {
+                type: "boss",
+                title: "👹 BOSS : L'Ogre des Additions",
+                course: "Le boss attaque ! Tu dois additionner la force de ton épée et de ton bouclier pour te défendre.",
+                task: "Crée une variable 'defense' contenant le résultat de 50 + 25.",
+                expected: "defense=50+25", 
+                xpReward: 50
+            },
+            {
+                type: "normal",
+                title: "Assembler des mots",
+                course: "On peut coller deux textes ensemble avec le signe +. C'est la concaténation.",
+                task: "Crée une variable 'cri' contenant l'addition de 'A l' et 'attaque !'.",
+                expected: "cri='Al'+'attaque!'", 
+                xpReward: 20
+            },
+            {
+                type: "normal",
+                title: "Dévoiler les secrets",
+                course: "Maintenant que tu sais créer des variables, il faut les afficher. Tu peux mettre le nom d'une variable directement dans print(), SANS guillemets.",
+                task: "Affiche la variable nommée 'score' (que l'on imagine déjà créée).",
+                expected: "print(score)", 
+                xpReward: 20
+            },
+            {
+                type: "normal",
+                title: "Vrai ou Faux ?",
+                course: "Les variables Booléennes (booleans) ne peuvent avoir que deux valeurs : True (Vrai) ou False (Faux). Attention, la majuscule est obligatoire en Python !",
+                task: "Crée une variable 'vivant' et donne-lui la valeur True.",
+                expected: "vivant=True", 
+                xpReward: 25
+            },
+            {
+                type: "normal",
+                title: "Mise à jour d'équipement",
+                course: "Tu peux changer la valeur d'une variable qui existe déjà en la redéfinissant.",
+                task: "La variable 'niveau' existe déjà. Change sa valeur pour qu'elle soit égale à 2.",
+                expected: "niveau=2", 
+                xpReward: 25
+            },
+            {
+                type: "boss",
+                title: "👹 BOSS : Le Spectre du Typage",
+                course: "Python différencie les nombres (int) et les textes (str). '5' (avec guillemets) n'est pas pareil que 5 (sans guillemets) !",
+                task: "Crée une variable 'code' contenant le TEXTE '404' (et non le nombre).",
+                expected: "code='404'", 
+                xpReward: 75
             }
         ],
         // Tes anciens niveaux intégrés ici :
