@@ -94,9 +94,29 @@ const app = {
         // Configuration Boutons Header
         document.getElementById('app-hash').textContent = APP_HASH;
         document.getElementById('refresh-btn').addEventListener('click', () => window.location.reload());
+        
+        // --- NOUVELLE GESTION DE LA FENÊTRE (MODALE) ---
+        const infoModal = document.getElementById('info-modal');
+        const closeModalBtn = document.getElementById('close-modal');
+
+        // Ouvrir la fenêtre
         document.getElementById('info-btn').addEventListener('click', () => {
-            document.getElementById('info-modal').classList.remove('hidden');
+            infoModal.classList.remove('hidden');
             this.fetchGitHubHash();
+        });
+
+        // Fermer en cliquant sur la croix 'X'
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', () => {
+                infoModal.classList.add('hidden');
+            });
+        }
+
+        // Fermer en cliquant n'importe où en dehors de la boîte
+        window.addEventListener('click', (event) => {
+            if (event.target === infoModal) {
+                infoModal.classList.add('hidden');
+            }
         });
     },
 
@@ -209,17 +229,27 @@ const app = {
     async fetchGitHubHash() {
         const ghText = document.getElementById('github-hash');
         ghText.textContent = "Recherche...";
+        
         try {
-            // Utilisation de tes variables de configuration en haut du fichier
-            const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/commits/main`);
-            if (!response.ok) throw new Error("Erreur API");
+            // On essaie d'abord sur la branche 'main'
+            let response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/commits/main`);
+            
+            // Si ça échoue, c'est peut-être la branche 'master'
+            if (!response.ok) {
+                response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/commits/master`);
+            }
+
+            // Si ça échoue toujours (ex: dépôt vide ou privé)
+            if (!response.ok) throw new Error("Dépôt introuvable ou vide");
+            
             const data = await response.json();
             ghText.textContent = data.sha.substring(0, 7); 
         } catch (error) {
-            ghText.textContent = "Hors ligne ou erreur";
+            // On affiche un message clair si ça plante
+            ghText.textContent = "Introuvable (Dépôt vide ou privé ?)";
+            console.error("Erreur GitHub :", error);
         }
-    }
-};
+    };
 
 // --- 5. DÉMARRAGE DU JEU ---
 window.onload = () => app.init();
