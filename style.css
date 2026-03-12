@@ -52,11 +52,26 @@ button:hover { background-color: var(--btn-hover); }
 
 /* Dashboard */
 .dashboard { border-left: 5px solid var(--success); }
-.stats { display: flex; justify-content: space-around; margin-top: 15px; font-size: 1.2rem; }
+.stats { 
+    display: flex; 
+    flex-wrap: wrap; /* NOUVEAU : Autorise le passage à la ligne sur petit écran */
+    gap: 15px; /* NOUVEAU : Ajoute un espace si les éléments s'empilent */
+    justify-content: space-around; 
+    margin-top: 15px; 
+    font-size: 1.1rem; /* Légèrement réduit pour mieux passer sur mobile */
+}
 
 /* Éléments de l'arène (déjà présents, adaptés) */
 .status-bar { display: flex; justify-content: space-between; margin-bottom: 15px; }
-.badge { background-color: #191a21; padding: 5px 15px; border-radius: 20px; font-weight: bold; border: 1px solid var(--accent-color); }
+.badge { 
+    background-color: #191a21; 
+    padding: 5px 15px; 
+    border-radius: 20px; 
+    font-weight: bold; 
+    border: 1px solid var(--accent-color); 
+    display: inline-block; /* NOUVEAU : Le badge devient un bloc incassable */
+    white-space: nowrap; /* NOUVEAU : Interdit au texte de sauter une ligne dans le badge */
+}
 .badge.xp { color: var(--success); border-color: var(--success); }
 .badge.boss-level { color: var(--boss-color); border-color: var(--boss-color); }
 hr { border: 0; height: 1px; background: #44475a; margin: 20px 0; }
@@ -70,6 +85,4 @@ textarea:focus { outline: none; border-color: var(--accent-color); }
 .modal-content { background-color: var(--card-bg); padding: 25px; border-radius: 12px; width: 90%; max-width: 400px; position: relative; }
 #close-modal { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; cursor: pointer; }
 .version-info { background: #191a21; padding: 10px; border-radius: 8px; margin: 15px 0; }
-.modal.hidden {
-    display: none !important;
-}
+.modal.hidden { display: none !important; }
