@@ -1,5 +1,4 @@
 // --- 1. CONFIGURATION ---
-const APP_HASH = "a1b2c3d"; // Change ceci à chaque mise à jour manuelle de ton code
 const GITHUB_USER = "antoto2021"; 
 const GITHUB_REPO = "CodeQuest";   
 
@@ -86,38 +85,51 @@ const app = {
         if (viewId === 'view-training') this.updateDashboard();
     },
 
+    pendingHash: null, // Mémorise temporairement la mise à jour
+
     init: function() {
         this.generateLanguageButtons();
         
         document.getElementById('home-btn').addEventListener('click', () => this.navigate('view-home'));
         
-        // Configuration Boutons Header
-        document.getElementById('app-hash').textContent = APP_HASH;
-        document.getElementById('refresh-btn').addEventListener('click', () => window.location.reload());
+        // --- GESTION AUTOMATIQUE DU HASH ---
+        let localHash = localStorage.getItem('codequest_hash') || "Aucun";
+        document.getElementById('app-hash').textContent = localHash;
+
+        // Bouton Rafraîchir
+        document.getElementById('refresh-btn').addEventListener('click', () => {
+            // Si une mise à jour est en attente, on la sauvegarde
+            if (this.pendingHash) {
+                localStorage.setItem('codequest_hash', this.pendingHash);
+            }
+            window.location.reload();
+        });
         
-        // --- NOUVELLE GESTION DE LA FENÊTRE (MODALE) ---
+        // --- GESTION DE LA FENÊTRE (MODALE) ---
         const infoModal = document.getElementById('info-modal');
         const closeModalBtn = document.getElementById('close-modal');
 
-        // Ouvrir la fenêtre
         document.getElementById('info-btn').addEventListener('click', () => {
             infoModal.classList.remove('hidden');
+            // Met à jour l'affichage au cas où il a changé
+            document.getElementById('app-hash').textContent = localStorage.getItem('codequest_hash') || "Aucun";
             this.fetchGitHubHash();
         });
 
-        // Fermer en cliquant sur la croix 'X'
         if (closeModalBtn) {
             closeModalBtn.addEventListener('click', () => {
                 infoModal.classList.add('hidden');
             });
         }
 
-        // Fermer en cliquant n'importe où en dehors de la boîte
         window.addEventListener('click', (event) => {
             if (event.target === infoModal) {
                 infoModal.classList.add('hidden');
             }
         });
+
+        // Lance une vérification silencieuse au démarrage
+        this.checkForUpdates();
     },
 
     generateLanguageButtons: function() {
@@ -226,28 +238,64 @@ const app = {
         }
     },
 
+    // --- NOUVELLE FONCTION : VÉRIFICATION SILENCIEUSE ---
+    async checkForUpdates() {
+        try {
+            let response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/commits/main`);
+            if (!response.ok) {
+                response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/commits/master`);
+            }
+            if (!response.ok) return; // Si ça rate, on ne fait rien (ex: pas de connexion)
+            
+            const data = await response.json();
+            const latestHash = data.sha.substring(0, 7);
+            const currentHash = localStorage.getItem('codequest_hash');
+
+            if (!currentHash) {
+                // Première visite : on enregistre le hash direct
+                localStorage.setItem('codequest_hash', latestHash);
+                document.getElementById('app-hash').textContent = latestHash;
+            } else if (currentHash !== latestHash) {
+                // MISE À JOUR DÉTECTÉE !
+                this.pendingHash = latestHash;
+                const refreshBtn = document.getElementById('refresh-btn');
+                refreshBtn.style.backgroundColor = "var(--boss-color)"; // Bouton en rouge
+                refreshBtn.textContent = "⚠️🔄"; // Change l'icône
+                refreshBtn.title = "Nouvelle version disponible ! Cliquez ici.";
+            }
+        } catch (error) {
+            console.log("Mode hors-ligne, impossible de vérifier les mises à jour.");
+        }
+    },
+
+    // --- MODIFICATION DE LA RECHERCHE MANUELLE ---
     async fetchGitHubHash() {
         const ghText = document.getElementById('github-hash');
         ghText.textContent = "Recherche...";
         
         try {
-            // On essaie d'abord sur la branche 'main'
             let response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/commits/main`);
             
-            // Si ça échoue, c'est peut-être la branche 'master'
             if (!response.ok) {
                 response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/commits/master`);
             }
 
-            // Si ça échoue toujours (ex: dépôt vide ou privé)
-            if (!response.ok) throw new Error("Dépôt introuvable ou vide");
+            if (!response.ok) throw new Error("Dépôt introuvable");
             
             const data = await response.json();
-            ghText.textContent = data.sha.substring(0, 7); 
+            const latestHash = data.sha.substring(0, 7); 
+            
+            const currentHash = localStorage.getItem('codequest_hash');
+            
+            // Affichage avec un code couleur
+            if (currentHash && currentHash !== latestHash) {
+                ghText.innerHTML = `${latestHash} <span style="color: var(--boss-color); font-size: 0.9em;">(Mise à jour dispo !)</span>`;
+            } else {
+                ghText.innerHTML = `${latestHash} <span style="color: var(--success); font-size: 0.9em;">(À jour)</span>`;
+            }
+
         } catch (error) {
-            // On affiche un message clair si ça plante
-            ghText.textContent = "Introuvable (Dépôt vide ou privé ?)";
-            console.error("Erreur GitHub :", error);
+            ghText.textContent = "Introuvable ou hors-ligne";
         }
     }
 };
