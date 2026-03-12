@@ -183,7 +183,129 @@ const database = {
             <h3>JavaScript : Le langage du Web</h3>
             <p>C'est lui qui donne vie aux pages internet !</p>
             <p>Une <strong>variable</strong> est une boîte dans laquelle on range une donnée. En JavaScript moderne, on utilise <code>let</code>.</p>
-        `
+        `,
+        html: `
+            <h3>Chapitre 1 : Les Fondations du Web</h3>
+            <p>Bienvenue dans le monde du Web ! Le HTML (HyperText Markup Language) est le squelette de toutes les pages internet. Il ne fait pas de calculs, il sert uniquement à structurer l'information.</p>
+            <br>
+
+            <h4 style="color: var(--accent-color);">1. Le concept de Balise (Tag)</h4>
+            <p>En HTML, on encadre le texte avec des <strong>balises</strong> pour dire au navigateur ce qu'il doit en faire. Une balise s'ouvre avec les signes <code>&lt; &gt;</code> et se ferme avec un slash <code>&lt;/ &gt;</code>.</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                &lt;balise&gt;Mon texte encadré&lt;/balise&gt;
+            </div>
+
+            <h4 style="color: var(--accent-color);">2. Le Squelette d'une page</h4>
+            <p>Toute page web commence par une structure stricte et obligatoire. La balise <code>&lt;html&gt;</code> enveloppe tout. Le <code>&lt;head&gt;</code> contient les réglages invisibles (comme le titre de l'onglet), et le <code>&lt;body&gt;</code> contient tout ce qui est visible à l'écran.</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                &lt;!DOCTYPE html&gt;<br>
+                &lt;html&gt;<br>
+                &nbsp;&nbsp;&lt;head&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Mon Super Site&lt;/title&gt;<br>
+                &nbsp;&nbsp;&lt;/head&gt;<br>
+                &nbsp;&nbsp;&lt;body&gt;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Tout ce qu'on voit sur la page va ici !<br>
+                &nbsp;&nbsp;&lt;/body&gt;<br>
+                &lt;/html&gt;
+            </div>
+
+            <h4 style="color: var(--accent-color);">3. Les Titres (Headings)</h4>
+            <p>Pour structurer ton texte, HTML propose 6 niveaux d'importance pour les titres. De <code>&lt;h1&gt;</code> (le titre principal de la page, unique) jusqu'à <code>&lt;h6&gt;</code> (le plus petit sous-titre).</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                &lt;h1&gt;Titre principal&lt;/h1&gt;<br>
+                &lt;h2&gt;Un sous-titre de section&lt;/h2&gt;
+            </div>
+
+            <h4 style="color: var(--accent-color);">4. Les Paragraphes</h4>
+            <p>Pour écrire du texte normal, on utilise simplement la balise <code>&lt;p&gt;</code> (pour paragraph).</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                &lt;p&gt;Ceci est une phrase normale dans un paragraphe.&lt;/p&gt;
+            </div>
+
+            <h4 style="color: var(--accent-color);">5. Les exceptions : Les balises orphelines</h4>
+            <p>Certaines balises n'ont pas besoin d'être refermées avec un slash, car elles n'encadrent pas de texte : elles insèrent directement un élément. Par exemple, pour forcer un retour à la ligne, on utilise la balise orpheline <code>&lt;br&gt;</code> (pour break).</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                Première ligne de texte &lt;br&gt;<br>
+                Deuxième ligne juste en dessous
+            </div>
+
+            <hr>
+            <p style="text-align: center; color: var(--success);"><em>Fin du Chapitre 1 du grimoire HTML.</em></p>
+            <br><br>
+            <h3>Chapitre 2 : Les Portails et les Illusions (Attributs, Liens, Images)</h3>
+            <p>Maintenant que la structure est en place, ajoutons un peu de magie. Voici comment connecter tes pages entre elles et afficher des visuels.</p>
+            <br>
+
+            <h4 style="color: var(--accent-color);">1. Le secret des Balises : Les Attributs</h4>
+            <p>Les balises peuvent contenir des informations supplémentaires cachées à l'intérieur de la balise d'ouverture. Ce sont les <strong>attributs</strong>. Ils s'écrivent toujours sous la forme <code>nom="valeur"</code> (la valeur doit toujours avoir des guillemets).</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                &lt;balise attribut="valeur"&gt;Texte&lt;/balise&gt;
+            </div>
+
+            <h4 style="color: var(--accent-color);">2. Créer des Portails (Les Liens)</h4>
+            <p>Pour voyager d'une page à l'autre, on utilise la balise <code>&lt;a&gt;</code> (pour <em>anchor</em>, l'ancre). Elle a absolument besoin de l'attribut <code>href</code> (hypertext reference) pour savoir vers quelle adresse web t'envoyer !</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                &lt;a href="https://google.com"&gt;Clique ici pour aller sur Google&lt;/a&gt;
+            </div>
+
+            <h4 style="color: var(--accent-color);">3. Invoquer des Illusions (Les Images)</h4>
+            <p>La balise <code>&lt;img&gt;</code> est une balise orpheline (elle n'a pas de balise de fermeture <code>&lt;/img&gt;</code>). Elle a besoin de deux attributs indispensables : <code>src</code> (la source, le chemin vers l'image) et <code>alt</code> (un texte alternatif si l'image ne charge pas, crucial pour les non-voyants).</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                &lt;img src="logo.png" alt="Le logo de CodeQuest"&gt;
+            </div>
+
+            <h4 style="color: var(--accent-color);">4. Organiser son inventaire (Les Listes)</h4>
+            <p>En HTML, pour faire une liste, on utilise deux balises imbriquées. D'abord on déclare le conteneur global : <code>&lt;ul&gt;</code> (liste à puces, <em>unordered list</em>) ou <code>&lt;ol&gt;</code> (liste numérotée, <em>ordered list</em>). Ensuite, chaque élément de la liste est encadré par <code>&lt;li&gt;</code> (<em>list item</em>).</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                &lt;ul&gt;<br>
+                &nbsp;&nbsp;&lt;li&gt;Épée en bois&lt;/li&gt;<br>
+                &nbsp;&nbsp;&lt;li&gt;Potion de soin&lt;/li&gt;<br>
+                &lt;/ul&gt;
+            </div>
+
+            <hr>
+            <p style="text-align: center; color: var(--success);"><em>Fin du Chapitre 2 du grimoire HTML.</em></p>
+            <br><br>
+            <h3>Chapitre 3 : Les Coffres et l'Interaction (Conteneurs et Formulaires)</h3>
+            <p>Pour terminer ton apprentissage du HTML, tu dois savoir comment regrouper tes éléments pour mieux les ranger, et comment demander des informations au joueur.</p>
+            <br>
+
+            <h4 style="color: var(--accent-color);">1. Les boîtes invisibles (div et span)</h4>
+            <p>En HTML, on utilise très souvent des "boîtes" génériques pour regrouper d'autres balises. Cela sera absolument indispensable quand tu apprendras le CSS pour faire ta mise en page !</p>
+            <ul>
+                <li style="margin-left: 20px;"><code>&lt;div&gt;</code> (Division) : C'est un gros coffre. Il prend toute la largeur disponible et crée un bloc de contenu.</li>
+                <li style="margin-left: 20px;"><code>&lt;span&gt;</code> : C'est une petite bourse. Il s'utilise à l'intérieur d'un texte pour cibler un mot précis sans forcer le passage à la ligne.</li>
+            </ul>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                &lt;div&gt;<br>
+                &nbsp;&nbsp;&lt;p&gt;Ton épée inflige &lt;span style="color: red;"&gt;50&lt;/span&gt; dégâts.&lt;/p&gt;<br>
+                &lt;/div&gt;
+            </div>
+
+            <h4 style="color: var(--accent-color);">2. Demander le mot de passe (Les Formulaires)</h4>
+            <p>Pour demander au joueur son pseudo ou son mot de passe, on crée une zone de formulaire avec la balise <code>&lt;form&gt;</code>.</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                &lt;form&gt;<br>
+                &nbsp;&nbsp;... les champs iront ici ...<br>
+                &lt;/form&gt;
+            </div>
+
+            <h4 style="color: var(--accent-color);">3. Les zones de saisie (Input)</h4>
+            <p>À l'intérieur du formulaire, on place des balises orphelines <code>&lt;input&gt;</code>. Grâce à l'attribut <code>type</code>, tu peux changer le comportement de la case ! L'attribut <code>placeholder</code> permet d'afficher un texte grisé en indice pour guider le joueur.</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                &lt;input type="text" placeholder="Entrez votre pseudo"&gt;<br>
+                &lt;input type="password" placeholder="Mot de passe secret"&gt;
+            </div>
+
+            <h4 style="color: var(--accent-color);">4. Passer à l'action (Le Bouton)</h4>
+            <p>Enfin, pour valider tout ça, il faut un bouton cliquable avec la balise <code>&lt;button&gt;</code>.</p>
+            <div style="background: #191a21; padding: 10px; border-radius: 5px; margin: 10px 0; font-family: monospace;">
+                &lt;button type="submit"&gt;Commencer l'aventure&lt;/button&gt;
+            </div>
+
+            <hr>
+            <p style="text-align: center; color: var(--success);"><em>Fin du Chapitre 3. Tu es maintenant un initié de l'ordre du HTML !</em></p>
+        `,
     },
 
     // Les niveaux d'entraînement (L'Arène)
