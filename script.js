@@ -249,8 +249,7 @@ const app = {
             ghText.textContent = "Introuvable (Dépôt vide ou privé ?)";
             console.error("Erreur GitHub :", error);
         }
-    }
-};
+    };
 
 // --- 5. DÉMARRAGE DU JEU ---
 window.onload = () => app.init();
