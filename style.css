@@ -144,3 +144,11 @@ textarea:focus { outline: none; border-color: var(--accent-color); }
     20%, 60% { filter: brightness(2) drop-shadow(0 0 15px red); transform: translateX(-5px); }
     40%, 80% { transform: translateX(5px); }
 }
+
+/* Le joueur prend un coup (tremblement et flash rouge) */
+.anim-player-damage { animation: playerDamage 0.5s ease; }
+@keyframes playerDamage {
+    0%, 100% { filter: brightness(1); transform: translateX(0); }
+    20%, 60% { filter: brightness(1.5) drop-shadow(0 0 15px red); transform: translateX(5px) rotate(5deg); }
+    40%, 80% { transform: translateX(-5px) rotate(-5deg); }
+}
