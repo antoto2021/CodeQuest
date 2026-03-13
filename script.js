@@ -1336,21 +1336,29 @@ const app = {
         const uiInput = document.getElementById('code-input');
         const uiFeedback = document.getElementById('feedback-message');
         const uiLevelBadge = document.getElementById('level-display');
+        
+        // Eléments RPG
+        const enemySprite = document.getElementById('enemy-sprite');
+        const enemyHp = document.getElementById('enemy-hp');
+        const rpgArena = document.getElementById('rpg-arena');
 
         if (userState.currentLevelIndex >= levels.length) {
             uiTitle.textContent = "🏆 Arène Terminée !";
             uiText.textContent = "Tu as prouvé ta valeur.";
             document.getElementById('practice-area').style.display = 'none';
+            if (rpgArena) rpgArena.style.display = 'none'; // Cache l'arène
             
             const langName = database.languages.find(l => l.id === userState.currentLangId).name;
             if (!userState.badges.includes(`Maître ${langName}`)) {
                 userState.badges.push(`Maître ${langName}`);
-                this.saveProgress(); // Sauvegarde l'obtention du badge
+                this.saveProgress(); 
             }
             return;
         }
 
         document.getElementById('practice-area').style.display = 'block';
+        if (rpgArena) rpgArena.style.display = 'flex'; // Affiche l'arène
+        
         const level = levels[userState.currentLevelIndex];
         
         uiTitle.textContent = level.title;
@@ -1360,12 +1368,24 @@ const app = {
         uiFeedback.textContent = "";
         document.getElementById('xp-display').textContent = `${userState.xp} XP`;
 
+        // Réinitialise la barre de vie ennemie
+        enemyHp.style.width = '100%';
+
+        // Choix du monstre selon le langage et le type de niveau
         if (level.type === "boss") {
             uiLevelBadge.classList.add('boss-level');
             uiLevelBadge.textContent = "Niveau BOSS";
+            enemySprite.textContent = "👹"; // Boss générique
+            rpgArena.style.borderColor = "var(--boss-color)"; // L'arène devient rouge
         } else {
             uiLevelBadge.classList.remove('boss-level');
             uiLevelBadge.textContent = `Niveau ${userState.currentLevelIndex + 1}`;
+            rpgArena.style.borderColor = "var(--accent-color)";
+            // Monstres selon le langage
+            if (userState.currentLangId === "python") enemySprite.textContent = "🐍";
+            else if (userState.currentLangId === "html") enemySprite.textContent = "🌐";
+            else if (userState.currentLangId === "js") enemySprite.textContent = "⚡";
+            else enemySprite.textContent = "👾";
         }
     },
 
@@ -1375,22 +1395,39 @@ const app = {
         const cleanExpected = level.expected.replace(/['"]/g, "'").replace(/\s+/g, '');
         
         const feedbackMessage = document.getElementById('feedback-message');
+        const playerSprite = document.getElementById('player-sprite');
+        const enemySprite = document.getElementById('enemy-sprite');
+        const enemyHp = document.getElementById('enemy-hp');
 
         if (cleanInput === cleanExpected) {
             feedbackMessage.style.color = "var(--success)";
             feedbackMessage.textContent = `✨ Coup critique ! + ${level.xpReward} XP`;
             
+            // ANIMATION D'ATTAQUE
+            playerSprite.classList.add('anim-attack');
+            
+            // Le monstre prend le coup un peu après l'attaque du joueur
+            setTimeout(() => {
+                enemySprite.classList.add('anim-damage');
+                enemyHp.style.width = '0%'; // Barre de vie à zéro !
+            }, 200);
+
             userState.xp += level.xpReward;
             userState.currentLevelIndex++;
-            
-            // SAUVEGARDE L'AVANCEMENT INSTANTANÉMENT
             userState.progress[userState.currentLangId] = userState.currentLevelIndex;
             this.saveProgress();
             
-            setTimeout(() => this.loadGameLevel(), 1500);
+            // Attendre la fin de l'animation pour passer au niveau suivant
+            setTimeout(() => {
+                playerSprite.classList.remove('anim-attack');
+                enemySprite.classList.remove('anim-damage');
+                this.loadGameLevel();
+            }, 1200);
+
         } else {
             feedbackMessage.style.color = "var(--boss-color)";
             feedbackMessage.textContent = "❌ L'attaque échoue (Erreur de syntaxe)...";
+            // Pour l'instant, on laisse l'échec simple, on ajoutera la punition au Point 2 !
         }
     },
 
