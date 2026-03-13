@@ -1204,7 +1204,8 @@ let userState = {
     badges: [],
     progress: {}, // NOUVEAU : Mémorise le niveau atteint pour chaque langage (ex: { python: 15 })
     currentLangId: null,
-    currentLevelIndex: 0
+    currentLevelIndex: 0,
+    currentHp: 3 // NOUVEAU : Les points de vie pour le niveau en cours
 };
 
 // --- 4. LOGIQUE DE L'APPLICATION (LE MOTEUR) ---
@@ -1371,6 +1372,12 @@ const app = {
         // Réinitialise la barre de vie ennemie
         enemyHp.style.width = '100%';
 
+        // NOUVEAU : Réinitialise le joueur
+        userState.currentHp = 3;
+        document.getElementById('player-hp').style.width = '100%';
+        document.getElementById('player-hp').style.backgroundColor = "var(--success)";
+        document.getElementById('code-input').disabled = false; // Réactive le champ si Game Over avant
+
         // Choix du monstre selon le langage et le type de niveau
         if (level.type === "boss") {
             uiLevelBadge.classList.add('boss-level');
@@ -1391,25 +1398,29 @@ const app = {
 
     checkCode: function() {
         const level = database.training[userState.currentLangId][userState.currentLevelIndex];
-        const cleanInput = document.getElementById('code-input').value.replace(/['"]/g, "'").replace(/\s+/g, '');
+        const uiInput = document.getElementById('code-input');
+        const cleanInput = uiInput.value.replace(/['"]/g, "'").replace(/\s+/g, '');
         const cleanExpected = level.expected.replace(/['"]/g, "'").replace(/\s+/g, '');
         
         const feedbackMessage = document.getElementById('feedback-message');
         const playerSprite = document.getElementById('player-sprite');
         const enemySprite = document.getElementById('enemy-sprite');
         const enemyHp = document.getElementById('enemy-hp');
+        const playerHp = document.getElementById('player-hp');
+
+        // Si le joueur est déjà mort, on bloque le bouton
+        if (userState.currentHp <= 0) return;
 
         if (cleanInput === cleanExpected) {
             feedbackMessage.style.color = "var(--success)";
             feedbackMessage.textContent = `✨ Coup critique ! + ${level.xpReward} XP`;
+            uiInput.disabled = true; // Empêche de retaper pendant l'animation
             
-            // ANIMATION D'ATTAQUE
             playerSprite.classList.add('anim-attack');
             
-            // Le monstre prend le coup un peu après l'attaque du joueur
             setTimeout(() => {
                 enemySprite.classList.add('anim-damage');
-                enemyHp.style.width = '0%'; // Barre de vie à zéro !
+                enemyHp.style.width = '0%'; 
             }, 200);
 
             userState.xp += level.xpReward;
@@ -1417,7 +1428,6 @@ const app = {
             userState.progress[userState.currentLangId] = userState.currentLevelIndex;
             this.saveProgress();
             
-            // Attendre la fin de l'animation pour passer au niveau suivant
             setTimeout(() => {
                 playerSprite.classList.remove('anim-attack');
                 enemySprite.classList.remove('anim-damage');
@@ -1425,12 +1435,36 @@ const app = {
             }, 1200);
 
         } else {
-            feedbackMessage.style.color = "var(--boss-color)";
-            feedbackMessage.textContent = "❌ L'attaque échoue (Erreur de syntaxe)...";
-            // Pour l'instant, on laisse l'échec simple, on ajoutera la punition au Point 2 !
+            // NOUVEAU : LE MONSTRE ATTAQUE !
+            userState.currentHp--;
+            
+            // Mise à jour visuelle de la barre de vie (33% par coup)
+            const hpPercentage = (userState.currentHp / 3) * 100;
+            playerHp.style.width = `${hpPercentage}%`;
+            
+            // Change la couleur si danger
+            if (userState.currentHp === 1) playerHp.style.backgroundColor = "var(--boss-color)";
+            else playerHp.style.backgroundColor = "orange";
+
+            playerSprite.classList.add('anim-player-damage');
+            
+            if (userState.currentHp > 0) {
+                feedbackMessage.style.color = "orange";
+                feedbackMessage.textContent = `⚠️ Le monstre riposte ! Il te reste ${userState.currentHp} vie(s).`;
+                setTimeout(() => { playerSprite.classList.remove('anim-player-damage'); }, 500);
+            } else {
+                // GAME OVER
+                feedbackMessage.style.color = "var(--boss-color)";
+                feedbackMessage.textContent = "💀 GAME OVER... Le niveau va recommencer.";
+                uiInput.disabled = true;
+                
+                setTimeout(() => { 
+                    playerSprite.classList.remove('anim-player-damage');
+                    this.loadGameLevel(); // Relance le même niveau
+                }, 2000);
+            }
         }
     },
-
     async checkForUpdates() {
         try {
             let response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/commits/main`);
